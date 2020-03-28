@@ -16,22 +16,22 @@ public class WebDriverSettings {
         String osName = System.getProperty("os.name");
         System.out.println(osName);
 
-        if (osName != null && osName.indexOf("Linux") != -1) {
+        if (osName != null && osName.contains("Linux")) {
             System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
         }
-        else if (osName != null && osName.indexOf("Windows") != -1) {
+        else if (osName != null && osName.contains("Windows")) {
             System.setProperty("webdriver.chrome.driver", "C:\\geckodriver\\chromedriver.exe");
         }
+
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
-        //options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
+        //options.addArguments("--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
+        options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
 
         chromeDriver = new ChromeDriver(options);
         chromeDriver.manage().window().maximize();
-        chromeDriver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
-        chromeDriver.manage().timeouts().setScriptTimeout(40, TimeUnit.SECONDS);
-        chromeDriver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
-
+        chromeDriver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+        chromeDriver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
+        chromeDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
     }
 
