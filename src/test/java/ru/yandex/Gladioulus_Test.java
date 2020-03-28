@@ -15,14 +15,6 @@ public class Gladioulus_Test extends WebDriverSettings {
 
     private WebDriverWait wait;
 
-    private void son(int s){
-        try {
-            Thread.sleep(s);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
 
     @Test
     public void  checkGladioulusWiki(){
@@ -43,7 +35,7 @@ public class Gladioulus_Test extends WebDriverSettings {
 
         List<WebElement> ListAllLinks = chromeDriver.findElements(By.xpath("//*[@href]"));
 
-        Boolean check = false;
+        boolean check = false;
         for(WebElement we : ListAllLinks) {
             // System.out.println(we.getAttribute("href"));
 
@@ -64,9 +56,9 @@ public class Gladioulus_Test extends WebDriverSettings {
         PageObjectYandexSearch yandexSearch = new PageObjectYandexSearch(chromeDriver);
 
         yandexSearch.find("Гладиолус");
-        yandexSearch.getPagerItems();
+        yandexSearch.waitPagerItems();
 
-        Boolean check = false;
+        boolean check = false;
         for(WebElement we : yandexSearch.getListOfAllLinks()) {
             // System.out.println(we.getAttribute("href"));
 

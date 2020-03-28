@@ -9,14 +9,6 @@ import java.util.List;
 
 public class FirstTest extends ru.WebDriverSettings {
 
-    private void son(int s){
-        try {
-            Thread.sleep(s);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
 /*
     @BeforeEach
     public void BeforeEachTest(){
