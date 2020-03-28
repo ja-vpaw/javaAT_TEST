@@ -11,6 +11,14 @@ import java.util.concurrent.TimeUnit;
 public class WebDriverSettings {
     public WebDriver chromeDriver;
 
+    public static void son(int s){
+        try {
+            Thread.sleep(s);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     @BeforeEach
     public void setupBellTest(){
         String osName = System.getProperty("os.name");
@@ -29,9 +37,9 @@ public class WebDriverSettings {
 
         chromeDriver = new ChromeDriver(options);
         chromeDriver.manage().window().maximize();
-        chromeDriver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
-        chromeDriver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
-        chromeDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        chromeDriver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
+        chromeDriver.manage().timeouts().setScriptTimeout(40, TimeUnit.SECONDS);
+        chromeDriver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 
     }
 
@@ -39,5 +47,4 @@ public class WebDriverSettings {
     public void closeBellTest(){
         chromeDriver.quit();
     }
-
 }
