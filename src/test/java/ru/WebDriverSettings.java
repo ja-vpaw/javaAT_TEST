@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,15 +14,17 @@ public class WebDriverSettings {
     @BeforeEach
     public void setupBellTest(){
         String osName = System.getProperty("os.name");
+        System.out.println(osName);
 
-        if (osName != null && osName.indexOf("Linux") == -1) {
+        if (osName != null && osName.indexOf("Linux") != -1) {
             System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
         }
-        else if (osName != null && osName.indexOf("Linux") == -1) {
-            System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
+        else if (osName != null && osName.indexOf("Windows") != -1) {
+            System.setProperty("webdriver.chrome.driver", "C:\\geckodriver\\chromedriver.exe");
         }
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
+        options.addArguments("--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
+        //options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
 
         chromeDriver = new ChromeDriver(options);
         chromeDriver.manage().window().maximize();

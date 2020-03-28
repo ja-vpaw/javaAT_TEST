@@ -6,10 +6,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import ru.WebDriverSettings;
+
 
 import java.util.List;
 
-public class Gladioulus_Test extends ru.WebDriverSettings {
+public class Gladioulus_Test extends WebDriverSettings {
 
     private WebDriverWait wait;
 
@@ -26,7 +28,7 @@ public class Gladioulus_Test extends ru.WebDriverSettings {
     public void  checkGladioulusWiki(){
         System.out.println(this.getClass().getName());
         chromeDriver.get("https://yandex.ru");
-        WebElement searchField = chromeDriver.findElement(By.xpath("//*[@id=\"text\"]"));
+        WebElement searchField = chromeDriver.findElement(By.name("text"));
         WebElement searchButton = chromeDriver.findElement(By.xpath("//*[@type='submit']"));
 
 
@@ -51,6 +53,27 @@ public class Gladioulus_Test extends ru.WebDriverSettings {
         Assertions.assertTrue(check);
 
 //        son(2000);
+
+    }
+
+    @Test
+    public void  checkGladioulusWikiPageObject(){
+        System.out.println(this.getClass().getName());
+        chromeDriver.get("https://yandex.ru");
+
+        PageObjectYandexSearch yandexSearch = new PageObjectYandexSearch(chromeDriver);
+
+        yandexSearch.find("Гладиолус");
+        yandexSearch.getPagerItems();
+
+        Boolean check = false;
+        for(WebElement we : yandexSearch.getListOfAllLinks()) {
+            // System.out.println(we.getAttribute("href"));
+
+            if (we.getAttribute("href").contains("wikipedia.org"))
+                check = true;
+        }
+        Assertions.assertTrue(check);
 
     }
 

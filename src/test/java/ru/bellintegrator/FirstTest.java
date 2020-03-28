@@ -3,7 +3,7 @@ package ru.bellintegrator;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import ru.WebDriverSettings;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
@@ -17,12 +17,12 @@ public class FirstTest extends ru.WebDriverSettings {
         }
     }
 
-    /*
-        @BeforeEach
-        public void BeforeEachTest(){
-            System.out.println("BeforeEach");
-        }
-    */
+/*
+    @BeforeEach
+    public void BeforeEachTest(){
+        System.out.println("BeforeEach");
+    }
+*/
     @Test
     public void firstTest(){
         System.out.println("Test1");
@@ -67,7 +67,33 @@ public class FirstTest extends ru.WebDriverSettings {
         Assertions.assertTrue(chek);
 
         son(5000);
+    }
 
+    @Test
+    public void findPageObject(){
+        System.out.println("findPageObject");
+        chromeDriver.get("https://bellintegrator.ru/index.php?route=product/search");
+        PageObject bellFind = new PageObject(chromeDriver);
+
+        bellFind.find("RPA");
+
+        Boolean chek = false;
+        for(WebElement we : bellFind.getListOfWebElement())
+            if(we.getText().equals("Автоматизация"))
+                chek=true;
+        Assertions.assertTrue(chek);
+    }
+
+    @Test
+    public void findPageFactory(){
+        System.out.println("findPageFactory");
+        PageFactoryBell bellFind = PageFactory.initElements(chromeDriver,PageFactoryBell.class);
+        bellFind.find("RPA");
+        Boolean chek = false;
+        for(WebElement we : bellFind.getListOfWebElement())
+            if(we.getText().equals("Автоматизация"))
+                chek=true;
+        Assertions.assertTrue(chek);
     }
 
 /*
