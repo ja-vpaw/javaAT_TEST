@@ -24,13 +24,13 @@ public class PageOpen {
     public Float getBuyDollar(WebElement webElement) {
         // Здесь решил оставить селектор со списком, т.к. всего два варианта
         return Float.parseFloat(webElement.findElement
-                (By.xpath("(//tr[@class=\"main-page-exchange__row main-page-exchange__row--with-border\" and .//span/text()='USD']//span)[2]"))
+                (By.xpath("(.//tr[@class=\"main-page-exchange__row main-page-exchange__row--with-border\" and .//span/text()='USD']//span)[2]"))
                 .getText().replace(',', '.'));
     }
 
     public Float getSellDollar(WebElement webElement) {
         return Float.parseFloat(webElement.findElement
-                (By.xpath("(//tr[@class=\"main-page-exchange__row main-page-exchange__row--with-border\" and .//span/text()='USD']//span)[3]"))
+                (By.xpath("(.//tr[@class=\"main-page-exchange__row main-page-exchange__row--with-border\" and .//span/text()='USD']//span)[3]"))
                 .getText().replace(',', '.'));
     }
 }
