@@ -54,7 +54,7 @@ public class WebDriverSettings {
             System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
         }
         else if (osName != null && osName.contains("Windows")) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", System.getenv("CHROME_DRIVER"));
             System.setProperty("webdriver.chrome.logfile", ".\\log\\chromedriver.log");
             //System.setProperty("webdriver.chrome.verboseLogging", "true");
         }
