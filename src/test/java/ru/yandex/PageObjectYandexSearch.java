@@ -7,14 +7,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PageObjectYandexSearch extends  PageObjectYandex{
 
+    private String selectorPagerItems = "//*[@class=\"pager__items\"]";
+
     public PageObjectYandexSearch(WebDriver chromeDriver) {
         super(chromeDriver);
     }
 
     // Получение списка с навигацией по страницам
-    public void waitPagerItems() {
+    public boolean waitPagerItems() {
         WebDriverWait wait = new WebDriverWait(chromeDriver, 20);
-        wait.until(ExpectedConditions.visibilityOf(chromeDriver.findElement(By.xpath("//*[@class=\"pager__items\"]"))));
-        chromeDriver.findElement(By.xpath("//*[@class=\"pager__items\"]"));
+        wait.until(ExpectedConditions.visibilityOf(chromeDriver.findElement(By.xpath(selectorPagerItems))));
+        return true;
     }
 }
